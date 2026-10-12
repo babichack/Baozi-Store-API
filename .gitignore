@@ -5,6 +5,8 @@ dist
 tmp
 out-tsc
 *.tsbuildinfo
+/baozi-store-api/target/
+/baozi-store-api/.h2/
 .expo
 .expo-shared
 
