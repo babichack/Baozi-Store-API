@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -41,16 +40,6 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Produto criar(@Valid @RequestBody Produto produto) {
         produto.setId(null);
-        return produtoRepository.save(produto);
-    }
-
-    @PutMapping("/{id}")
-    public Produto atualizar(@PathVariable Long id, @Valid @RequestBody Produto dados) {
-        Produto produto = buscar(id);
-        produto.setNome(dados.getNome());
-        produto.setDescricao(dados.getDescricao());
-        produto.setPreco(dados.getPreco());
-        produto.setEstoque(dados.getEstoque());
         return produtoRepository.save(produto);
     }
 

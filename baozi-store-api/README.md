@@ -1,56 +1,50 @@
 # Baozi Store API
 
-A Java 17+ Spring Boot REST API for customers, products, and orders at the fictional Baozi Store.
+Java 17+ REST API built with Spring Boot, Spring Data JPA, and H2.
 
 ## Run
-
-From this directory:
 
 ```bash
 mvn spring-boot:run
 ```
 
-The API listens on port `8080` by default. Set `PORT` to use another port.
+The API listens on port `8080` by default. Set `PORT` to use another port. H2 is an in-memory database, so data is cleared when the application stops.
 
-## REST endpoints
+## Endpoints
 
-All endpoints use JSON.
+Each entity supports `POST` to create, `GET` to list, `GET /{id}` to retrieve by ID, and `DELETE /{id}` to delete.
 
-| Resource | Endpoints |
-| --- | --- |
-| Customers | `GET/POST /api/clientes`, `GET/PUT/DELETE /api/clientes/{id}` |
-| Products | `GET/POST /api/produtos`, `GET/PUT/DELETE /api/produtos/{id}` |
-| Orders | `GET/POST /api/pedidos`, `GET/PUT/DELETE /api/pedidos/{id}` |
+- `/api/clientes`
+- `/api/produtos`
+- `/api/pedidos`
 
-Example customer:
+## Request bodies
+
+Create a customer:
 
 ```json
 {
   "nome": "Ana Silva",
-  "email": "ana@example.com",
-  "telefone": "+55 11 99999-0000"
+  "clienteDesde": "2026-10-12"
 }
 ```
 
-Example product:
+Create a product:
 
 ```json
 {
   "nome": "Baozi de porco",
-  "descricao": "Pão chinês cozido no vapor, recheado com porco",
   "preco": 12.50,
-  "estoque": 20
+  "estoque": true
 }
 ```
 
-Example order (use existing customer and product IDs):
+Create an order using existing IDs:
 
 ```json
 {
   "clienteId": 1,
-  "produtoIds": [1],
-  "status": "RECEBIDO"
+  "produtoId": 1,
+  "quantidade": 2
 }
 ```
-
-The H2 database is in-memory and resets when the application stops. The H2 console is available at `/h2-console` while the application is running (JDBC URL: `jdbc:h2:mem:baozistore`, username: `sa`, blank password).

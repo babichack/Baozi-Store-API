@@ -5,8 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "clientes")
@@ -18,11 +20,8 @@ public class Cliente {
     @NotBlank
     private String nome;
 
-    @Email
-    @NotBlank
-    private String email;
-
-    private String telefone;
+    @NotNull
+    private LocalDate clienteDesde;
 
     public Cliente() {
     }
@@ -43,19 +42,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public LocalDate getClienteDesde() {
+        return clienteDesde;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setClienteDesde(LocalDate clienteDesde) {
+        this.clienteDesde = clienteDesde;
     }
 }

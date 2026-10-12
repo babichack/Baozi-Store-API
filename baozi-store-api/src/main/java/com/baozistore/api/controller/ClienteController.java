@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -41,15 +40,6 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente criar(@Valid @RequestBody Cliente cliente) {
         cliente.setId(null);
-        return clienteRepository.save(cliente);
-    }
-
-    @PutMapping("/{id}")
-    public Cliente atualizar(@PathVariable Long id, @Valid @RequestBody Cliente dados) {
-        Cliente cliente = buscar(id);
-        cliente.setNome(dados.getNome());
-        cliente.setEmail(dados.getEmail());
-        cliente.setTelefone(dados.getTelefone());
         return clienteRepository.save(cliente);
     }
 
